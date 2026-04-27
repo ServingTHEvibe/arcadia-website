@@ -356,10 +356,21 @@ img { display: block; max-width: 100%; }
   transition: opacity 0.8s var(--ease-premium), transform 0.8s var(--ease-premium);
   transition-delay: var(--delay, 0s);
 }
+.reveal-up.visible { opacity: 1; transform: translateY(0); }
 
-.reveal-up.visible {
-  opacity: 1;
-  transform: translateY(0);
+/* Hero-specific: always animate via CSS, no JS dependency */
+#hero .reveal-up {
+  animation: heroRevealUp 0.8s var(--ease-premium) both;
+}
+#hero .hero-label    { animation-delay: 0.5s; }
+#hero .hero-headline { animation-delay: 0.65s; }
+#hero .hero-ctas     { animation-delay: 0.85s; }
+#hero .hero-sub      { animation-delay: 0.75s; }
+#hero .hero-awards   { animation-delay: 0.9s; }
+
+@keyframes heroRevealUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .reveal-left {
@@ -367,7 +378,6 @@ img { display: block; max-width: 100%; }
   transform: translateX(-40px);
   transition: opacity 0.9s var(--ease-premium), transform 0.9s var(--ease-premium);
 }
-
 .reveal-left.visible { opacity: 1; transform: translateX(0); }
 
 .reveal-right {
@@ -376,7 +386,6 @@ img { display: block; max-width: 100%; }
   transition: opacity 0.9s var(--ease-premium), transform 0.9s var(--ease-premium);
   transition-delay: 0.15s;
 }
-
 .reveal-right.visible { opacity: 1; transform: translateX(0); }
 
 /* ── HERO — CENTER MONUMENT ──────────────────────────────────── */
@@ -418,10 +427,13 @@ img { display: block; max-width: 100%; }
 }
 
 .reveal-fade {
-  opacity: 0;
-  transition: opacity 1.2s var(--ease-premium);
+  animation: monumentFadeIn 1.4s var(--ease-premium) 0.2s both;
 }
-.reveal-fade.visible { opacity: 1; }
+
+@keyframes monumentFadeIn {
+  from { opacity: 0; transform: translate(-50%, -44%); }
+  to   { opacity: 1; transform: translate(-50%, -48%); }
+}
 
 /* BOTTOM-LEFT — headline + CTA */
 .hero-bottom-left {
