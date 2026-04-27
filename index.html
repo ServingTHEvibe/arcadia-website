@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arcadia — Farm-to-Table Dining in Polk City, Iowa</title>
+  <meta name="description" content="Award-winning farm-to-table restaurant in Polk City, Iowa. 2026 Best Burger in Des Moines. Make a reservation today." />
+  <meta property="og:title" content="Arcadia — Farm-to-Table Dining" />
+  <meta property="og:description" content="Award-winning farm-to-table restaurant in Polk City, Iowa. 2026 Best Burger in Des Moines." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.arcadiapolkcity.com/" />
+  <meta property="og:image" content="assets/images/burger-hero.png" />
+  <meta name="theme-color" content="#0D1A0D" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Arcadia",
+    "description": "Award-winning farm-to-table restaurant in Polk City, Iowa",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "1010 Tyler Street Suite 4",
+      "addressLocality": "Polk City",
+      "addressRegion": "IA"
+    },
+    "telephone": "515-207-0011",
+    "openingHours": ["Mo-Sa 11:00-21:00"],
+    "servesCuisine": "Farm-to-Table American",
+    "priceRange": "$$"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ── LOADER ─────────────────────────────────────────────── -->
+  <div id="loader">
+    <div class="loader-inner">
+      <div class="loader-logo">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="22" stroke="#C9882A" stroke-width="1.5" opacity="0.6"/>
+          <path d="M24 8 C16 14 12 20 24 24 C36 20 32 14 24 8Z" fill="#C9882A" opacity="0.8"/>
+          <path d="M14 28 C18 24 24 26 24 32 C24 38 18 40 14 36 C10 32 10 28 14 28Z" fill="#C9882A" opacity="0.5"/>
+          <path d="M34 28 C30 24 24 26 24 32 C24 38 30 40 34 36 C38 32 38 28 34 28Z" fill="#C9882A" opacity="0.5"/>
+        </svg>
+        <span class="loader-brand">ARCADIA</span>
+      </div>
+      <div class="loader-bar-track">
+        <div class="loader-bar-fill" id="loaderBar"></div>
+      </div>
+      <span class="loader-label" id="loaderLabel">Loading experience...</span>
+    </div>
+  </div>
+
+  <!-- ── SCROLL PROGRESS ────────────────────────────────────── -->
+  <div id="scrollProgress"></div>
+
+  <!-- ── AMBIENT PARTICLES ──────────────────────────────────── -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- ── NAVBAR ─────────────────────────────────────────────── -->
+  <nav id="navbar">
+    <div class="nav-logo">
+      <svg width="28" height="28" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="22" stroke="#C9882A" stroke-width="1.5" opacity="0.7"/>
+        <path d="M24 8 C16 14 12 20 24 24 C36 20 32 14 24 8Z" fill="#C9882A"/>
+        <path d="M14 28 C18 24 24 26 24 32 C24 38 18 40 14 36 C10 32 10 28 14 28Z" fill="#C9882A" opacity="0.6"/>
+        <path d="M34 28 C30 24 24 26 24 32 C24 38 30 40 34 36 C38 32 38 28 34 28Z" fill="#C9882A" opacity="0.6"/>
+      </svg>
+      <span>Arcadia</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#location">Visit</a></li>
+    </ul>
+    <a href="https://www.arcadiapolkcity.com/reservations" target="_blank" class="nav-cta">Reserve</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#menu" class="mobile-nav-link">Menu</a>
+    <a href="#about" class="mobile-nav-link">About</a>
+    <a href="#events" class="mobile-nav-link">Events</a>
+    <a href="#location" class="mobile-nav-link">Visit</a>
+    <a href="https://www.arcadiapolkcity.com/reservations" target="_blank" class="mobile-nav-cta">Make a Reservation</a>
+  </div>
+
+  <main>
+
+    <!-- ── HERO — CENTER MONUMENT ─────────────────────────────── -->
+    <section id="hero">
+      <!-- floating ambient glow behind the object -->
+      <div class="hero-glow"></div>
+
+      <!-- THE MONUMENT — burger video plays center-dominant -->
+      <div class="hero-monument reveal-fade">
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+          poster="assets/images/burger-hero.png"
+          aria-label="The Arcadia Burger"
+        >
+          <source src="assets/videos/arcadia-burger.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      <!-- BOTTOM-LEFT — headline + CTA (MDX format) -->
+      <div class="hero-bottom-left">
+        <div class="hero-label reveal-up">Polk City, Iowa · Est. 2024</div>
+        <h1 class="hero-headline reveal-up">
+          Where the Farm<br /><em>Meets the Table.</em>
+        </h1>
+        <div class="hero-ctas reveal-up">
+          <a href="https://www.arcadiapolkcity.com/reservations" target="_blank" class="btn-primary">Make a Reservation</a>
+          <a href="https://www.arcadiapolkcity.com/menu" target="_blank" class="btn-ghost">View the Menu →</a>
+        </div>
+      </div>
+
+      <!-- BOTTOM-RIGHT — descriptor + awards (MDX format) -->
+      <div class="hero-bottom-right">
+        <p class="hero-sub reveal-up">
+          Award-winning farm-to-table dining<br />rooted in Iowa soil. Seasonal.<br />Intentional. Unforgettable.
+        </p>
+        <div class="hero-awards reveal-up">
+          <div class="award-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            2026 Best Burger · Des Moines
+          </div>
+          <div class="award-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            Top 10 Restaurant · Iowa
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-scroll-hint">
+        <div class="scroll-hint-line"></div>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <!-- ── TICKER ──────────────────────────────────────────────── -->
+    <div class="ticker-wrap">
+      <div class="ticker-track">
+        <span class="ticker-item">🏆 2026 Best Burger in Des Moines</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item">Top 10 Iowa Restaurant</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item">Farm-Fresh Since Day One</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item">Mon–Sat · 11AM–9PM</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item">Polk City, Iowa</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item">🏆 2026 Best Burger in Des Moines</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item">Top 10 Iowa Restaurant</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item">Farm-Fresh Since Day One</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item">Mon–Sat · 11AM–9PM</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item">Polk City, Iowa</span>
+        <span class="ticker-sep">·</span>
+      </div>
+    </div>
+
+
+    <!-- ── FARM STORY ──────────────────────────────────────────── -->
+    <section class="farm-story" id="story">
+      <div class="farm-story-sticky">
+        <div class="story-left">
+          <div class="story-label section-label">OUR STORY</div>
+          <div class="story-frames">
+            <div class="story-frame active" data-frame="0">
+              <h2 class="story-headline">It starts<br /><em>with the soil.</em></h2>
+              <p class="story-body">Everything on your plate begins with Iowa's rich farmland. We partner with local growers who share our belief that good food starts long before the kitchen.</p>
+            </div>
+            <div class="story-frame" data-frame="1">
+              <h2 class="story-headline">Harvested<br /><em>at peak.</em></h2>
+              <p class="story-body">Ingredients arrive fresh — never frozen, never compromised. Seasonal menus that honor what Iowa's land is giving right now.</p>
+            </div>
+            <div class="story-frame" data-frame="2">
+              <h2 class="story-headline">Crafted<br /><em>with intention.</em></h2>
+              <p class="story-body">Our kitchen treats every ingredient as the star. No unnecessary complexity — just honest cooking that lets the farm flavors speak.</p>
+            </div>
+            <div class="story-frame" data-frame="3">
+              <h2 class="story-headline">Served<br /><em>with care.</em></h2>
+              <p class="story-body">Every plate that leaves our kitchen carries the effort of farmers, cooks, and a team that genuinely cares about your experience.</p>
+            </div>
+          </div>
+        </div>
+        <div class="story-right">
+          <div class="story-image-wrap">
+            <div class="story-img active" data-img="0">
+              <img src="assets/images/burger-cinematic.png" alt="Arcadia signature burger" />
+            </div>
+            <div class="story-img" data-img="1">
+              <img src="assets/images/farm-spread.png" alt="Farm-fresh seasonal ingredients" />
+            </div>
+            <div class="story-img" data-img="2">
+              <img src="assets/images/burger-deconstructed.png" alt="Deconstructed burger layers" />
+            </div>
+            <div class="story-img" data-img="3">
+              <img src="assets/images/plated-steak.png" alt="Plated farm-to-table dish" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="story-scroll-driver"></div>
+    </section>
+
+    <!-- ── MENU BENTO ──────────────────────────────────────────── -->
+    <section class="menu-section" id="menu">
+      <div class="section-header reveal-up">
+        <div class="section-label">WHAT WE'RE SERVING</div>
+        <h2 class="section-title">Award-Winning<br /><em>Flavors.</em></h2>
+      </div>
+      <div class="bento-grid reveal-up">
+
+        <div class="bento-card bento-large">
+          <div class="bento-img">
+            <img src="assets/images/burger-moody.png" alt="The Arcadia Burger — Best Burger in Des Moines 2026" />
+          </div>
+          <div class="bento-content">
+            <div class="bento-tag">🏆 Best Burger 2026</div>
+            <h3>The Arcadia Burger</h3>
+            <p>Iowa-raised beef, house-made sauce, local brioche. The one that started it all.</p>
+            <a href="https://www.arcadiapolkcity.com/menu" target="_blank" class="bento-link">See Full Menu →</a>
+          </div>
+        </div>
+
+        <div class="bento-card bento-medium">
+          <div class="bento-img">
+            <img src="assets/images/farm-spread.png" alt="Farm fresh seasonal specials" />
+          </div>
+          <div class="bento-content">
+            <div class="bento-tag">Seasonal</div>
+            <h3>Farm Fresh Specials</h3>
+            <p>Changes with the harvest. Always surprising. Always local.</p>
+          </div>
+        </div>
+
+        <div class="bento-card bento-small bento-drink">
+          <div class="bento-img bento-img-sq">
+            <img src="assets/images/cocktail.png" alt="Craft cocktails at Arcadia" />
+          </div>
+          <div class="bento-content-sm">
+            <h3>Craft Drinks</h3>
+            <p>Local spirits & seasonal cocktails</p>
+          </div>
+        </div>
+
+        <div class="bento-card bento-small bento-steak">
+          <div class="bento-img bento-img-sq">
+            <img src="assets/images/plated-steak.png" alt="Arcadia farm-to-table plated dish" />
+          </div>
+          <div class="bento-content-sm">
+            <h3>Farm Plates</h3>
+            <p>Seasonal proteins &amp; harvest sides</p>
+          </div>
+        </div>
+
+        <div class="bento-card bento-wide">
+          <div class="bento-cta-content">
+            <div>
+              <h3>Hungry? Order Online.</h3>
+              <p>Farm-fresh meals, ready when you are.</p>
+            </div>
+            <a href="https://www.arcadiapolkcity.com/order" target="_blank" class="btn-primary">Order Now →</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── STATS ───────────────────────────────────────────────── -->
+    <section class="stats-section">
+      <div class="stats-grid">
+        <div class="stat-item reveal-up">
+          <div class="stat-number" data-target="15">0</div>
+          <div class="stat-unit">+</div>
+          <div class="stat-label">Iowa Farm Partners</div>
+        </div>
+        <div class="stat-item reveal-up" style="--delay:0.1s">
+          <div class="stat-number" data-target="40">0</div>
+          <div class="stat-unit">+</div>
+          <div class="stat-label">Signature Menu Items</div>
+        </div>
+        <div class="stat-item reveal-up" style="--delay:0.2s">
+          <div class="stat-number" data-target="10">0</div>
+          <div class="stat-unit">K+</div>
+          <div class="stat-label">Guests Served</div>
+        </div>
+        <div class="stat-item reveal-up" style="--delay:0.3s">
+          <div class="stat-number" data-target="1">0</div>
+          <div class="stat-unit">st</div>
+          <div class="stat-label">In Iowa for Burgers</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ABOUT ───────────────────────────────────────────────── -->
+    <section class="about-section" id="about">
+      <div class="about-bg">
+        <img src="assets/images/restaurant-interior.png" alt="Arcadia restaurant interior" />
+        <div class="about-bg-overlay"></div>
+      </div>
+      <div class="about-inner">
+        <div class="about-content reveal-up">
+          <div class="section-label">OUR PHILOSOPHY</div>
+          <h2 class="section-title">Peace. Simplicity.<br /><em>Harmony.</em></h2>
+          <p class="about-body">Arcadia was built on the belief that great food shouldn't be complicated — it should be honest. We work directly with Iowa farmers, select ingredients at their peak, and cook in a way that honors the land they came from.</p>
+          <p class="about-body">We're not chasing trends. We're chasing flavor, freshness, and a dining experience that makes you feel like you're exactly where you're supposed to be.</p>
+          <div class="about-values">
+            <div class="value-pill">Farm-Direct Sourcing</div>
+            <div class="value-pill">Seasonal Menus</div>
+            <div class="value-pill">Iowa Grown</div>
+            <div class="value-pill">No Shortcuts</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PRIVATE EVENTS ──────────────────────────────────────── -->
+    <section class="events-section" id="events">
+      <div class="events-bg">
+        <img src="assets/images/events-table.png" alt="Private dining at Arcadia" />
+        <div class="events-bg-overlay"></div>
+      </div>
+      <div class="events-inner reveal-up">
+        <div class="section-label">PRIVATE DINING</div>
+        <h2 class="section-title">Host Something<br /><em>Unforgettable.</em></h2>
+        <p class="events-sub">Birthdays, corporate gatherings, rehearsal dinners, celebrations of all kinds — Arcadia provides the setting, the food, and the atmosphere that makes moments memorable.</p>
+        <div class="events-cards">
+          <div class="event-card glass-card">
+            <div class="event-icon">🎂</div>
+            <h3>Birthday & Celebrations</h3>
+            <p>Private dining room available for groups of any size</p>
+          </div>
+          <div class="event-card glass-card">
+            <div class="event-icon">💼</div>
+            <h3>Corporate Events</h3>
+            <p>Team dinners, client meetings, and company celebrations</p>
+          </div>
+          <div class="event-card glass-card">
+            <div class="event-icon">💍</div>
+            <h3>Rehearsal Dinners</h3>
+            <p>Start the celebration right with farm-to-table hospitality</p>
+          </div>
+        </div>
+        <a href="https://www.arcadiapolkcity.com/private-events" target="_blank" class="btn-primary">Plan Your Event →</a>
+      </div>
+    </section>
+
+    <!-- ── LOCATION ────────────────────────────────────────────── -->
+    <section class="location-section" id="location">
+      <div class="location-inner">
+        <div class="location-info reveal-left">
+          <div class="section-label">FIND US</div>
+          <h2 class="section-title">Come Find<br /><em>Arcadia.</em></h2>
+          <div class="location-details">
+            <div class="location-detail">
+              <div class="detail-label">ADDRESS</div>
+              <div class="detail-value">1010 Tyler Street, Suite 4<br />Polk City, Iowa</div>
+            </div>
+            <div class="location-detail">
+              <div class="detail-label">HOURS</div>
+              <div class="detail-value">Monday – Saturday<br />11:00 AM – 9:00 PM<br /><span class="closed">Sunday Closed</span></div>
+            </div>
+            <div class="location-detail">
+              <div class="detail-label">PHONE</div>
+              <div class="detail-value"><a href="tel:5152070011">515-207-0011</a></div>
+            </div>
+          </div>
+          <a href="https://maps.google.com/?q=1010+Tyler+Street+Suite+4+Polk+City+IA" target="_blank" class="btn-ghost">Get Directions →</a>
+        </div>
+        <div class="location-map reveal-right">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2982.0!2d-93.7166!3d41.7736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s1010+Tyler+St%2C+Polk+City%2C+IA+50226!5e0!3m2!1sen!2sus!4v1"
+            width="100%" height="100%"
+            style="border:0; filter: invert(90%) hue-rotate(180deg) saturate(0.4) brightness(0.85);"
+            allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Arcadia restaurant location map">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FINAL CTA ───────────────────────────────────────────── -->
+    <section class="final-cta-section">
+      <div class="final-cta-orb"></div>
+      <div class="final-cta-inner reveal-up">
+        <div class="section-label">READY?</div>
+        <h2 class="final-cta-headline">Experience Arcadia.</h2>
+        <p class="final-cta-sub">Reserve your table and taste what Iowa's best tastes like.</p>
+        <a href="https://www.arcadiapolkcity.com/reservations" target="_blank" class="btn-primary btn-large">Make a Reservation</a>
+        <div class="final-cta-or">or call <a href="tel:5152070011">515-207-0011</a></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <svg width="32" height="32" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="22" stroke="#C9882A" stroke-width="1.5" opacity="0.7"/>
+          <path d="M24 8 C16 14 12 20 24 24 C36 20 32 14 24 8Z" fill="#C9882A"/>
+          <path d="M14 28 C18 24 24 26 24 32 C24 38 18 40 14 36 C10 32 10 28 14 28Z" fill="#C9882A" opacity="0.6"/>
+          <path d="M34 28 C30 24 24 26 24 32 C24 38 30 40 34 36 C38 32 38 28 34 28Z" fill="#C9882A" opacity="0.6"/>
+        </svg>
+        <span>Arcadia</span>
+      </div>
+      <nav class="footer-nav">
+        <a href="#menu">Menu</a>
+        <a href="#about">About</a>
+        <a href="#events">Private Events</a>
+        <a href="#location">Visit</a>
+        <a href="https://www.arcadiapolkcity.com/gift-cards" target="_blank">Gift Cards</a>
+        <a href="https://www.arcadiapolkcity.com/insider" target="_blank">Insider</a>
+      </nav>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/arcadiapolkcity" target="_blank" aria-label="Arcadia on Instagram" class="social-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="https://www.facebook.com/arcadiapolkcity" target="_blank" aria-label="Arcadia on Facebook" class="social-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+      </div>
+      <div class="footer-legal">
+        <p>Arcadia · 1010 Tyler Street, Suite 4, Polk City, IA · 515-207-0011</p>
+        <p>© 2026 Arcadia Restaurant. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
